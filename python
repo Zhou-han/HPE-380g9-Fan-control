@@ -1,0 +1,21 @@
+import paramiko
+import time
+# 创建SSH客户端
+client = paramiko.SSHClient()
+
+# 自动添加主机名和密钥到本地的known_hosts文件
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+# 连接到远程主机
+client.connect('IP', username='username', password='xxxxxxxx')
+
+# 执行命令
+stdin, stdout, stderr = client.exec_command('fan p 0 max 16')
+stdin, stdout, stderr = client.exec_command('fan p 1 max 16')
+stdin, stdout, stderr = client.exec_command('fan p 2 max 16')
+stdin, stdout, stderr = client.exec_command('fan p 3 max 16')
+stdin, stdout, stderr = client.exec_command('fan p 4 max 16')
+stdin, stdout, stderr = client.exec_command('fan p 5 max 16')
+
+# 打印命令的输出
+print("OK")
